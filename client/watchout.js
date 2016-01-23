@@ -2,7 +2,7 @@
 
 //make an object with gameOptions (play area height, width), number of enemies
 var gameOptions = {
-  containerHeight: 500,
+  containerHeight: 400,
   containerWidth: 500,
   enemyNumber : 25
   //padding: 20;
@@ -46,20 +46,34 @@ var containerForSvg = d3.select('.container')
 //d3.range([start, ]stop[, step])
 // (0, ene, 1).map
 
-// creating the enemy circles
-var enemyUnits = containerForSvg
-                                .append("circle")
-                                .attr("cx", 100)
-                                .attr("cy", 100)
-                                .attr("r", 10)
-                                .attr("fill", "red");
 
+// Creating an array of all the enemyUnits
+var enemies = d3.range(gameOptions.enemyNumber);
+                // .map(function(){
+                //   return {
+                //     xPosition: Math.random()*gameOptions.containerWidth,
+                //     yPosition: Math.random()*gameOptions.containerHeight
+                //   }
+                // });
 
-// Our game coordinates range from 0 to 100 in both x and y axes. This gets mapped to our pixelled game area using these scale functions
+// Appending each enenmyUnit to the SVG
+var enemyUnits = containerForSvg.selectAll('circle')
+                                .data(enemies)
+                                .enter()
+                                .append('circle')
+                                .attr('cx', function(){ return Math.random()*gameOptions.containerWidth; })
+                                .attr('cy', function(){ return Math.random()*gameOptions.containerHeight; })
+                                .attr('r', 10)
+                                .attr('fill', 'red');
 
-//make a container to play the game in
-//make the enemies
-  //start with circles
+var swappingUnits = function(){enemyUnits.transition()
+          .duration(1000)
+          .attr('cx', function (){return Math.random()*gameOptions.containerWidth})
+          .attr('cy', function (){return Math.random()*gameOptions.containerHeight})
+        };
+setInterval(swappingUnits, 1000);
+          //maybe change colors as well
+
 
 //make a draggable player
   //using d3.behavior.drag, on dragstart, drag, dragend
