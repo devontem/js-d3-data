@@ -2,8 +2,8 @@
 
 //make an object with gameOptions (play area height, width), number of enemies
 var gameOptions = {
-  containerHeight: 400,
-  containerWidth: 500,
+  containerHeight: 450,
+  containerWidth: 700,
   enemyNumber : 25
   //padding: 20;
 }
@@ -67,12 +67,13 @@ var enemyUnits = containerForSvg.selectAll('circle')
                                 .attr('fill', 'red');
 
 var swappingUnits = function(){enemyUnits.transition()
-          .duration(1000)
-          .attr('cx', function (){return Math.random()*gameOptions.containerWidth})
+          .duration(2800)
+          .attr('cx', function (){ return Math.random()*gameOptions.containerWidth})
           .attr('cy', function (){return Math.random()*gameOptions.containerHeight})
         };
-setInterval(swappingUnits, 1000);
+setInterval(swappingUnits, 3000);
           //maybe change colors as well
+
 
 
 //make a draggable player
