@@ -38,6 +38,7 @@ var scoreUpdater = function(){
 
 //potentially use
 //   Axes
+// Container SVG used for gameboard
 var containerForSvg = d3.select('.container')
                         .append('svg')
                         .attr('width', gameOptions.containerWidth)
@@ -66,18 +67,29 @@ var enemyUnits = containerForSvg.selectAll('circle')
                                 .attr('r', 10)
                                 .attr('fill', 'red');
 
-var swappingUnits = function(){enemyUnits.transition()
-          .duration(2800)
-          .attr('cx', function (){ return Math.random()*gameOptions.containerWidth})
-          .attr('cy', function (){return Math.random()*gameOptions.containerHeight})
+var swappingUnits = function(){
+					enemyUnits.transition()
+                    .duration(2800)
+                    .attr('cx', function (){ return Math.random()*gameOptions.containerWidth})
+                    .attr('cy', function (){ return Math.random()*gameOptions.containerHeight})
         };
 setInterval(swappingUnits, 3000);
-          //maybe change colors as well
-
+//maybe change colors as well
+var drag = d3.behavior.drag()
+             .on('drag', function() { playerUnit.attr('cx', d3.event.x)
+                                                .attr('cy', d3.event.y); })             
+var playerUnit = containerForSvg
+                                .append('circle')
+                                .attr('cx', 250)
+                                .attr('cy', 250)
+                                .attr('r', 15)
+                                .attr('fill', 'blue')
+                                .call(drag);
 
 
 //make a draggable player
   //using d3.behavior.drag, on dragstart, drag, dragend
+    
 
 //collision detection
   //Collision Detection
