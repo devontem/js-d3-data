@@ -2,14 +2,60 @@
 
 /* Note: an asteroid image is included in this repo.
 Feel free to use it if you like. */
-.container{
-
-}
-.playArea{
-
-}
-.enemyUnits{
+body{
+  font-family: 'Open Sans', sans-serif;
   background-color: black;
-  height: 15px;
-  width: 15px;
+  color: blue;
+}
+h4{
+  font-weight: bold;
+  font-size: 50px;
+  margin: 20px 0px;
+  color: #29b664;
+  text-align: center;
+}
+.wrapper{
+  width: 900px;
+  margin: 0px auto;
+}
+svg {
+  background-image: url('pacmanbackground.jpg');
+  background-repeat: no-repeat;
+  border: 4px solid #2c3e50;
+  border-radius: 8%;
+}
+.playArscorea{
+}
+.scoreboard {
+  float: right;
+  background: #95a5a6;
+  padding: 10px;
+  width: 150px;
+  color: #2c3e50;
+  border-radius: 5px;
+  font-size: 1em;
+  margin-top:4px;
+  border-radius: 20px;
+  border: 3px solid #2c3e50;
+}
+.pacMan {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    margin:-20px 0 0 -20px;
+    -webkit-animation:spin 1s linear infinite;
+    -moz-animation:spin 1s linear infinite;
+    animation:spin 1s linear infinite;
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
 }
